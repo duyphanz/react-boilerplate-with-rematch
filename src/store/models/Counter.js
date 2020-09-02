@@ -10,4 +10,9 @@ export const Counter = {
     // handle state changes with impure functions.
     // use async/await for async actions
   }),
+  selectors: (slice, createSelector) => ({
+    selectState() {
+      return slice(state => state);
+    },
+  }),
 };
