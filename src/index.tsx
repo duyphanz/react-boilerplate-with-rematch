@@ -11,28 +11,18 @@ import 'react-app-polyfill/stable';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import FontFaceObserver from 'fontfaceobserver';
 import * as serviceWorker from 'serviceWorker';
 
 import 'sanitize.css/sanitize.css';
 
 // Initialize languages
-import './locales/i18n';
+// import './locales/i18n';
 
 import { App } from 'app';
 
 import { HelmetProvider } from 'react-helmet-async';
 
 import store from '../src/store';
-
-// Observe loading of Inter (to remove 'Inter', remove the <link> tag in
-// the index.html file and this observer)
-const openSansObserver = new FontFaceObserver('Inter', {});
-
-// When Inter is loaded, add a font-family using Inter to the body
-openSansObserver.load().then(() => {
-  document.body.classList.add('fontLoaded');
-});
 
 const MOUNT_NODE = document.getElementById('root') as HTMLElement;
 
