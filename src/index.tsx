@@ -12,6 +12,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import * as serviceWorker from 'serviceWorker';
+import { ConnectedRouter } from 'connected-react-router';
 
 import 'sanitize.css/sanitize.css';
 
@@ -22,7 +23,8 @@ import { App } from 'app';
 
 import { HelmetProvider } from 'react-helmet-async';
 
-import store from '../src/store';
+import store, { history } from '../src/store';
+import packageJson from '../package.json';
 
 const MOUNT_NODE = document.getElementById('root') as HTMLElement;
 
@@ -33,13 +35,16 @@ const ConnectedApp = ({ Component }: Props) => (
   <Provider store={store}>
     <HelmetProvider>
       <React.StrictMode>
-        <Component />
+        <ConnectedRouter history={history}>
+          <Component />
+        </ConnectedRouter>
       </React.StrictMode>
     </HelmetProvider>
   </Provider>
 );
 
 const render = (Component: typeof App) => {
+  console.log(`version: ${packageJson.version}`);
   ReactDOM.render(<ConnectedApp Component={Component} />, MOUNT_NODE);
 };
 
